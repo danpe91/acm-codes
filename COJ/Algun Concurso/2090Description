@@ -1,0 +1,35 @@
+2090 - Number Sequence II
+Description
+
+A single positive integer i is given. Then you must write a program to find the digit located in the position i in the sequence of number groups S1S2...Sk. Each group Sk consists of a sequence of positive integer numbers ranging from 1 to k, written one after another. For example, the first 80 digits of the sequence are as follows:
+11212312341234512345612345671234567812345678912345678910123456789101112345678910
+
+But, it's not all!!!
+Small Vlad is so enthusiastic with this sequence that he want that you find:
+The digit between 0 and 9, located at the ith position?
+The number N between 1 and maximum possible k, to which the ith position belong?
+The group number Sk between 1 and maximum possible k, to which the ith position belong?
+
+Input specification
+
+The first line of the input file contains a single integer t (1 <= t <= 100), the number of test cases, followed by one line for each test case. The line for a test case contains the single integer i (1 <= i <= 10^9).
+
+Output specification
+
+There should be one output line per test case containing the three numbers mentioned above.
+
+Sample input
+6
+50
+40
+30
+20
+10
+67
+Sample output
+5 5 10
+4 4 9
+2 2 8
+5 5 6
+4 4 4
+0 10 11

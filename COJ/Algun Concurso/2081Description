@@ -1,0 +1,42 @@
+2081 - Saving Money
+Description
+
+Albert likes to travel around the world, and during his travels he likes to buy shirts and other souvenirs. Since Albert has free time and likes to spend a lot of money (except for transportation due to their bad experiences), each time that he want to make a trip from a certain place to another, he chooses the route that will cost less money, no matter the weather requiring the journey or the places he need to go.
+
+Before the trip, Albert makes a list of minimum costs to go from one place to another, these fees are collected from transport services (air, train, bus, etc..) to which he can reach. For example, if from city A to city B bus service will cost $100 and by train cost $50, then Albert writes in his book A-B $50 (or B-A $50). However this time he is preparing a big tour, for this reason the list of costs is very hug and Albert needs help.
+
+Can you make a program, that knowing the list of costs of Albert' book, calculate the minimum cost of travel from any place X to any place Y?
+Input specification
+
+The input begins with a number t (1 <= t <= 10^2) indicating the number of cases processed. Each event consists of:
+The first line has two integers n (1 <= n <= 10^2) and m (1 <= m <= 10^4) where n is the number of different cities in Albert' book and m is the number of entries, then follow m lines, each containing three integers a, b, c, (1 <= a, b <= n) where a represents the departure city, b represents the destination city, and c (1 <= c <= 10^4) the cost to go from a to b (or from b to a). Then follow an integer q that indicates the total number of queries. Then q (1 <= q <= 10^4) lines follow, each with two integers A and B, (1 <= A, B <= n). Then you must, for each query, calculate the minimum cost of travel from A to B?
+
+Output specification
+
+For each case, and for each query, you must calculate the minimum cost of travel from A to B? You must print the result in one line. If there is no way for make the travel, you must print -1 instead of the minimum cost. Print a blank line, between the cases.
+
+Sample input
+2
+3 3
+1 2 3
+2 3 2
+1 3 6
+2
+1 2
+1 3
+6 4
+1 6 1
+1 4 2
+4 5 3
+1 3 1
+3
+1 5
+6 2
+2 2
+Sample output
+3
+5
+
+5
+-1
+0
