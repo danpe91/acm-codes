@@ -121,3 +121,24 @@ char str[] = "sample string";
 char * tok;
 tok = strtok(str, " ");
 while (tok != NULL) {/* do stuff */	tok = strtok(NULL, " ");}
+
+
+// algorithm lib
+next_permutation(array, array + (array_size))
+prev_permutation(array, array + (array_size))
+lexicographical_compare(a,a+a_size, b,b+b_size);
+lexicographical_compare(a,a+a_size, b,b+b_size, comp_func);
+bool comp_func(char c1, char c2){ return std::tolower(c1)<std::tolower(c2); }
+bool myfunctiona (int i, int j) { return i<j; }
+bool myfunctionb (numbers i, numbers j) { return i.a<j.a; }
+// includes checks if all element in continent are contained in container
+includes(container,container+(container_size),continent,continent+(continent_size))
+includes(container,container+(container_size),continent,continent+(continent_size),myfunctionx)
+reverse(myvector.begin(),myvector.end())							std::vector
+reverse(myvector,myvector + (myvector_size))						standard vector
+myvector.resize(myints_size); 
+reverse_copy (myints, myints+(myints_size), myvector.begin());		creates a copy instead of modifying the original
+rotate(myvector.begin(),myvector.begin()+3,myvector.end());			rotates in the vector 3 elements to the left
+In binary_search v must be sorted previously
+binary_search (v.begin(), v.end(), 3)								looks for a 3 in v
+binary_search (v.begin(), v.end(), 6, myfunctionx)					looks for a 6 in v using myfunctionx as compare element
