@@ -67,7 +67,7 @@ void intToDate (int jd, int &m, int &d, int &y){
   m = j + 2 - 12 * x;
   y = 100 * (n - 49) + i + x;
 }
-
+string dayOfWeek[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 // converts integer (Julian day number) to day of week
 string intToDay (int jd){
   return dayOfWeek[jd % 7];
@@ -197,3 +197,22 @@ int val[] = {1,2,3,4,5};
 int result[5];
 partial_sum (val, val+5, result);
 for (int i=0; i<5; i++) cout << result[i];
+
+// bitset
+bitset<size> var;	// ej: bitset<15> bs;
+bitset vas(3);		// 3 in binary
+bitset var("10010")
+var.size()			// returns var size
+var.count()			// count number of ones
+var.any()			// returns if any bit is set
+var.all()
+var.set()			// sets all bitset
+var.set(n)			// set bit in n position (0-indexed starting from right)
+var.set(n, 0)		// place 0 in position n (0-indexed starting from right)
+var.reset()			// resets all bits
+var.reset(n)		// reset bit in position n(0-indexed starting from right)
+var.flip()
+var.flip(n)
+var.test(n) == var[n]	// gets value in position n( 0-indexed starting from right)
+var.to_ulong()
+string mystring = var.to_string<char,std::string::traits_type,std::string::allocator_type>();
