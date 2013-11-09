@@ -128,17 +128,72 @@ next_permutation(array, array + (array_size))
 prev_permutation(array, array + (array_size))
 lexicographical_compare(a,a+a_size, b,b+b_size);
 lexicographical_compare(a,a+a_size, b,b+b_size, comp_func);
+
 bool comp_func(char c1, char c2){ return std::tolower(c1)<std::tolower(c2); }
 bool myfunctiona (int i, int j) { return i<j; }
 bool myfunctionb (numbers i, numbers j) { return i.a<j.a; }
+bool function (int i, int j)	{return i == j;}
+
 // includes checks if all element in continent are contained in container
 includes(container,container+(container_size),continent,continent+(continent_size))
 includes(container,container+(container_size),continent,continent+(continent_size),myfunctionx)
+
 reverse(myvector.begin(),myvector.end())							std::vector
-reverse(myvector,myvector + (myvector_size))						standard vector
+reverse(myvector + (myvector_size))									standard vector
+
 myvector.resize(myints_size); 
 reverse_copy (myints, myints+(myints_size), myvector.begin());		creates a copy instead of modifying the original
+
 rotate(myvector.begin(),myvector.begin()+3,myvector.end());			rotates in the vector 3 elements to the left
+
 In binary_search v must be sorted previously
 binary_search (v.begin(), v.end(), 3)								looks for a 3 in v
 binary_search (v.begin(), v.end(), 6, myfunctionx)					looks for a 6 in v using myfunctionx as compare element
+
+v.resize(first_size + second_size);											first and second are standard vectors
+merge (first,first+(first_size),second,second+(second_size),v.begin());		merges first and second into v	
+
+equal (myvector.begin(), myvector.end(), myints)					myints is standard array_size
+equal (myvector.begin(), myvector.end(), myints, function)
+
+
+// first and second must be previously ordered
+// guarda en v los elementos que se ecuentran en first y no en second + los
+// elementos que se encuentran en second y no en first
+v.resize(first_size + second_size);
+vector<int>::iterator it;
+it=set_symmetric_difference (first, first+(first_size), second, second+(second_size), v.begin());
+v.resize(it-v.begin());
+
+// first and second must be previously ordered
+// copia en v los elementos de first y second sin repetir los elemntos, a diferencia de merge
+v.resize(first_size + second_size);
+vector<int>::iterator it;
+it=set_union (first, first+(first_size), second, second+(second_size), v.begin());
+v.resize(it-v.begin());  
+
+// first and second must be previously ordered
+// copia en v los elementos que se encuetran tanto en first como en second
+v.resize(first_size + second_size);
+vector<int>::iterator it;
+it=set_intersection (first, first+(first_size), second, second+(second_size), v.begin());
+v.resize(it-v.begin());  
+
+// first and second must be previously ordered
+// copia en v los elementos que se encuetran en first menos los que se encuentran en second
+v.resize(first_size + second_size);
+vector<int>::iterator it;
+it=set_difference (first, first+(first_size), second, second+(second_size), v.begin());
+v.resize(it-v.begin());
+// en las ultimas 4 funciones tambien se encuentra la variacion mandandole un ultimo parametro
+// este parametro contiene una funcion de la misma manera que en qsort para comparar i < j
+
+// iterar en vector usando iterator
+for (vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+    cout << *it;
+
+// numeric lib
+int val[] = {1,2,3,4,5};
+int result[5];
+partial_sum (val, val+5, result);
+for (int i=0; i<5; i++) cout << result[i];
