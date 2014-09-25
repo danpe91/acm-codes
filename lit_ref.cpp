@@ -1,3 +1,5 @@
+#define PI atan(1)*4;
+
 int compare(const void *a, const void *b) 
 { 
         struct point *ia = (struct point *)a;
@@ -15,6 +17,7 @@ inline bool comp(data a, data b) {
 		return std::lexicographical_compare(b.low, b.low + 3, a.low, a.low + 3);
 	return a.n < b.n;
 }
+
 
 #define EPS 1e-7
 typedef long long LL;
@@ -41,6 +44,24 @@ LL fast_exp(int b, int n){
     if(p & 1) res *= x;
   
   return res;
+}
+
+// returns d = gcd(a,b); finds x,y such that d = ax + by
+int extended_euclid(int a, int b, int &x, int &y) {  
+  int xx = y = 0;
+  int yy = x = 1;
+  while (b) {
+    int q = a/b;
+    int t = b; b = a%b; a = t;
+    t = xx; xx = x-q*xx; x = t;
+    t = yy; yy = y-q*yy; y = t;
+  }
+  return a;
+}
+
+// return a % b (positive value)
+int mod(int a, int b) {
+  return ((a%b)+b)%b;
 }
 
 // converts Gregorian date to integer (Julian day number)
@@ -77,7 +98,7 @@ long long gcd(long long a, long long b) {
 	return ((b)? (gcd(b, a%b)) : (a));
 }
 int mcm(int a, int b) {
-	return ((!b || !a)? (0) : ((a / mcd(a,b)) * b));
+	return ((!b || !a)? (0) : ((a / gcd(a,b)) * b));
 }
 bool is_prime(int n) {
     if (n < 2) return false;
@@ -111,6 +132,16 @@ class Height{
 };
 bool Height::operator<(const Height& right) const	{	return x + y < right.x + right.y;	}
 
+#define Node pair<int, int>
+
+struct cmp {
+  
+  bool operator() (const Node &a, const Node &b) {
+
+    return a.second > b.second;
+  }
+};
+priority_queue<Node, vector<Node>, cmp> p_queue;
 
 string line;
 getline(cin, line)
@@ -216,3 +247,117 @@ var.flip(n)
 var.test(n) == var[n]	// gets value in position n( 0-indexed starting from right)
 var.to_ulong()
 string mystring = var.to_string<char,std::string::traits_type,std::string::allocator_type>();
+
+
+// dijkstra
+#include <cstdio>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+#define MAX 10005
+#define Node pair<int, int>
+#define INF 1 << 30
+
+struct cmp {
+  
+  bool operator() (const Node &a, const Node &b) {
+
+    return a.second > b.second;
+  }
+};
+
+vector<Node> adjArr[MAX];
+int distances[MAX];
+bool visited[MAX];
+priority_queue<Node, vector<Node>, cmp> p_queue;
+int vertices_num;
+int previous[MAX];
+
+void init() {
+
+  for (int i = 0; i <= vertices_num; ++i) {
+
+    distances[i] = INF;
+    visited[i] = false;
+    previous[i] = -1;
+  }
+}
+
+void relaxation(int current, int adjacent, int weight) {
+
+  if(distances[current] + weight < distances[adjacent]) {
+
+    distances[adjacent] = distances[current] + weight;
+    previous[adjacent] = current;
+    p_queue.push(Node(adjacent, distances[adjacent]));
+  }
+}
+
+void print_path(int destiny) {
+
+  if (previous[destiny] != -1) {
+    print_path(previous[destiny]);
+  }
+
+  printf("%d ", destiny);
+}
+
+void dijkstra(int initial) {
+
+  init();
+  p_queue.push(Node(initial, 0));
+  distances[initial] = 0;
+  int current, adjacent, weight;
+
+  while(!p_queue.empty()) {
+
+    current = p_queue.top().first;
+    p_queue.pop();
+
+    if(visited[current])  continue;
+    visited[current] = true;
+
+    for (int i = 0; i < adjArr[current].size(); ++i) {
+
+      adjacent = adjArr[current][i].first;
+      weight = adjArr[current][i].second;
+
+      if (!visited[adjacent]) {
+
+        relaxation(current, adjacent, weight);
+      }
+    }
+  }
+
+  printf( "Distancias mas cortas iniciando en vertice %d\n" , initial );
+    for( int i = 1 ; i <= vertices_num ; ++i ){
+        printf("Vertice %d , distancia mas corta = %d\n" , i , distances[ i ] );
+    }
+
+    puts("\n**************Impresion de camino mas corto**************");
+    printf("Ingrese vertice destino: ");
+    int destiny;
+    scanf("%d" , &destiny );
+    print_path( destiny );
+    printf("\n");
+}
+
+int main() {
+
+  int edges, origin, destiny, weight, initial;
+  scanf("%d %d", &vertices_num, &edges);
+
+  while(edges--) {
+
+    scanf("%d %d %d", &origin, &destiny, &weight);
+    adjArr[origin].push_back(Node(destiny, weight));
+    //adjArr[destiny].push_back(Node(origin, weight));    // uncomment this if it is a non-directed graph
+  }
+
+  printf("Ingrese el vertice inicial: ");
+    scanf("%d" , &initial );
+    dijkstra( initial );
+  
+}

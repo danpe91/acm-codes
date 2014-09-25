@@ -1,3 +1,4 @@
+//Primes
 #include <cmath>
 #include <cstdio>
 #define EPS 1e-7
@@ -20,7 +21,6 @@ bool isPrimeSlow (LL x)
 // months are expressed as integers from 1 to 12, days are expressed
 // as integers from 1 to 31, and years are expressed as 4-digit
 // integers.
-
 #include <iostream>
 #include <string>
 
@@ -657,5 +657,5 @@ public class LogLan {
       }
   }
     }
-}
+};
 
